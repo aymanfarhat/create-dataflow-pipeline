@@ -1,0 +1,13 @@
+python main.py \
+  --runner=DataflowRunner \
+  --project=$PROJECT_ID \
+  --region=$REGION \
+  --temp_location=$TEMP_LOCATION \
+  --staging_location=$STAGING_LOCATION \
+  --service_account_email=$SERVICE_ACCOUNT \
+  --subnetwork=$SUBNETWORK \
+  --no_use_public_ips \
+  --setup_file=setup.py \
+  --input_file=$INPUT_FILE \
+  --output_bq_table=$OUTPUT_BQ_TABLE \
+  --setup_file=./setup.py

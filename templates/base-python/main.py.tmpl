@@ -1,0 +1,29 @@
+import sys
+import argparse
+import logging
+from apache_beam.options.pipeline_options import PipelineOptions
+from apache_beam.options.pipeline_options import SetupOptions
+from {{.Pipeline.Name}}_app import app
+
+
+def build_pipeline(argv: list[str] = None, save_main_session: bool = True):
+    logging.getLogger().setLevel(logging.INFO)
+    parser = argparse.ArgumentParser()
+
+    {{ range $arg := .UseCaseTemplate.Parameters }}
+    parser.add_argument("--{{$arg.Name}}", help="{{$arg.HelpText}}")
+    {{end}}
+
+    args, beam_args = parser.parse_known_args()
+
+    pipeline_options = PipelineOptions(save_main_session=True)
+    pipeline_options.view_as(SetupOptions).save_main_session = save_main_session
+
+    app.run(
+        **vars(args),
+        beam_options=pipeline_options,
+    )
+
+
+if __name__ == "__main__":
+    build_pipeline(sys.argv)

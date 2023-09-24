@@ -1,0 +1,19 @@
+{
+    "name": "PubSub to Postgres (LLM Code)",
+    "description": "Stream data from PubSub into another PubSub topic",
+    "streaming": true,
+    "language": "python",
+    "code_path": "use-cases/pubsub-to-pubsub/app.py",
+    "parameters": [
+        {
+            "name": "input_file",
+            "label": "Input File",
+            "help_text": "The GCS file to load data from."
+        },
+        {
+            "name": "output_bq_table",
+            "label": "Output BigQuery Table",
+            "help_text": "The BigQuery table to write data to."
+        }
+    ]
+}
